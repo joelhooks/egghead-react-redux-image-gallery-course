@@ -1,15 +1,19 @@
 {
   "name": "egghead-react-redux-image-gallery",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "A simple image gallery built in React.",
   "main": "index.js",
   "scripts": {
     "start": "budo ./main.js:build.js --dir ./ --verbose --live -- -t babelify",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelhooks/egghead-react-redux-image-gallery-course.git"
+  },
+  "author": "Joel Hooks <joel@egghead.io>",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
@@ -18,5 +22,8 @@
     "babel-preset-stage-2": "^6.5.0",
     "babelify": "^7.2.0",
     "budo": "^8.1.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.7.4"
   }
 }
