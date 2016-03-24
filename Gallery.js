@@ -29,8 +29,8 @@ export default class Gallery extends Component {
           <img src={selectedImage} alt="selected image"/>
         </div>
         <div className="image-scroller">
-          {images.map((image) =>
-            <img src={image} onClick={() => this.handleThumbClick(image)}/>
+          {images.map((image, index) =>
+            <img key={index} src={image} onClick={() => this.handleThumbClick(image)}/>
           )}
         </div>
       </div>
