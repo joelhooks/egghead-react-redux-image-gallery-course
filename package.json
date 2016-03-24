@@ -24,6 +24,8 @@
     "budo": "^8.1.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.7.4"
+    "babel-polyfill": "^6.7.4",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   }
 }
