@@ -2,7 +2,7 @@ import test from 'tape';
 import { call, put } from 'redux-saga/effects';
 import {loadImages} from './sagas';
 import { fetchImages } from './api'
-import {imagesLoaded, selectImage} from './actions';
+import {imagesLoaded, selectImage, imageLoadError} from './actions';
 
 test('loadImages', assert => {
   const generator = loadImages({page:1});
@@ -25,6 +25,14 @@ test('loadImages', assert => {
     generator.next().value,
     put(selectImage(images[0])),
     'should dispatch SELECT_IMAGE action'
+  );
+
+  const error = 'test error';
+
+  assert.deepEqual(
+    generator.throw(error).value,
+    put(imageLoadError(error)),
+    'should dispatch IMAGE_LOADING_ERROR when error occurs'
   );
 
   assert.end();
