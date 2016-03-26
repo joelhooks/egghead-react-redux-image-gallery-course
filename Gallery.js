@@ -17,17 +17,18 @@ class Gallery extends Component {
     const {loadNextPage, currentPage} = this.props;
     loadNextPage(currentPage);
   }
-  handleThumbClick(selectedImage) {
-    const {selectImage} = this.props;
-    selectImage(selectedImage);
-  }
   render() {
-    const {images, selectedImage} = this.props;
+    const {
+      images, 
+      selectedImage, 
+      selectImage
+    } = this.props;
+    
     return (
       <div className="image-gallery">
         <GalleryImage selectedImage={selectedImage} />
-        <GalleryThumbs images={images} 
-                       handleThumbClick={this.handleThumbClick.bind(this)} />
+        <GalleryThumbs images={images}
+                       selectImage={selectImage} />
         <GalleryButtons handleLoadMoreClick={this.handleLoadMoreClick.bind(this)} />
       </div>
     )
