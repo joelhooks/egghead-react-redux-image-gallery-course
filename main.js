@@ -11,11 +11,11 @@ import createSagaMiddleware from 'redux-saga';
 
 import imagesReducer from './reducer';
 
-import {loadImages} from './sagas';
+import {watchForLoadImages} from './sagas';
 
 const store = createStore(
   imagesReducer,
-  applyMiddleware(createSagaMiddleware(loadImages))
+  applyMiddleware(createSagaMiddleware(watchForLoadImages))
 );
 
 ReactDom.render(

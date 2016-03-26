@@ -1,5 +1,10 @@
 export const SELECT_IMAGE = 'SELECT_IMAGE';
 export const IMAGES_LOADED = 'IMAGES_LOADED';
+export const LOAD_IMAGES = 'LOAD_IMAGES';
+
+export function loadImages() {
+  return { type: LOAD_IMAGES }
+}
 
 export function imagesLoaded(images) {
   return {

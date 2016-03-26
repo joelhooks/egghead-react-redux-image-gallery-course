@@ -6,7 +6,9 @@ import * as GalleryActions from './actions';
 
 class Gallery extends Component {
   componentDidMount() {
-    const {selectImage, imagesLoaded} = this.props;
+    const {loadImages} = this.props;
+
+    loadImages();
   }
   handleThumbClick(selectedImage) {
     const {selectImage} = this.props;
