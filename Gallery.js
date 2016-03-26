@@ -7,7 +7,6 @@ import * as GalleryActions from './actions';
 class Gallery extends Component {
   componentDidMount() {
     const {loadImages} = this.props;
-
     loadImages();
   }
   handleLoadMoreClick() {
@@ -16,7 +15,6 @@ class Gallery extends Component {
   }
   handleThumbClick(selectedImage) {
     const {selectImage} = this.props;
-
     selectImage(selectedImage);
   }
   render() {
@@ -28,11 +26,15 @@ class Gallery extends Component {
         </div>
         <div className="image-scroller">
           {images.map((image, index) =>
-            <img key={index} src={image} onClick={() => this.handleThumbClick(image)}/>
+            <img key={index}
+                 src={image}
+                 onClick={() => this.handleThumbClick(image)}/>
           )}
         </div>
         <div className="gallery-actions">
-          <button onClick={this.handleLoadMoreClick.bind(this)}>Load More Images</button>
+          <button onClick={this.handleLoadMoreClick.bind(this)}>
+            Load More Images
+          </button>
         </div>
       </div>
     )
