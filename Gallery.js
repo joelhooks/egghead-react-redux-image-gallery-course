@@ -4,6 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import * as GalleryActions from './actions';
 
+import GalleryImage from './GalleryImage';
+import GalleryThumbs from './GalleryThumbs';
+import GalleryButtons from './GalleryButtons';
+
 class Gallery extends Component {
   componentDidMount() {
     const {loadImages} = this.props;
@@ -21,21 +25,10 @@ class Gallery extends Component {
     const {images, selectedImage} = this.props;
     return (
       <div className="image-gallery">
-        <div className="gallery-image">
-          <img src={selectedImage} alt="selected image"/>
-        </div>
-        <div className="image-scroller">
-          {images.map((image, index) =>
-            <img key={index}
-                 src={image}
-                 onClick={() => this.handleThumbClick(image)}/>
-          )}
-        </div>
-        <div className="gallery-actions">
-          <button onClick={this.handleLoadMoreClick.bind(this)}>
-            Load More Images
-          </button>
-        </div>
+        <GalleryImage selectedImage={selectedImage} />
+        <GalleryThumbs images={images} 
+                       handleThumbClick={this.handleThumbClick.bind(this)} />
+        <GalleryButtons handleLoadMoreClick={this.handleLoadMoreClick.bind(this)} />
       </div>
     )
   }
