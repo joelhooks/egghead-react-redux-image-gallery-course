@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 class Gallery extends Component {
   componentDidMount() {
-    console.log(this.props);
     const {images, dispatch} = this.props;
 
     dispatch({
