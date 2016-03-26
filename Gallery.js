@@ -21,7 +21,10 @@ class Gallery extends Component {
     const {
       images, 
       selectedImage, 
-      selectImage
+      selectImage,
+      startSlideshow,
+      stopSlideshow,
+      slideshowRunning
     } = this.props;
     
     return (
@@ -29,7 +32,11 @@ class Gallery extends Component {
         <GalleryImage selectedImage={selectedImage} />
         <GalleryThumbs images={images}
                        selectImage={selectImage} />
-        <GalleryButtons handleLoadMoreClick={this.handleLoadMoreClick.bind(this)} />
+        <GalleryButtons handleLoadMoreClick={this.handleLoadMoreClick.bind(this)}
+                        startSlideshow={startSlideshow}
+                        stopSlideshow={stopSlideshow}
+                        slideshowRunning={slideshowRunning}
+        />
       </div>
     )
   }
@@ -39,7 +46,8 @@ const mapStateToProps = (state) => {
   return {
     images: state.images,
     selectedImage: state.selectedImage,
-    currentPage: state.currentPage
+    currentPage: state.currentPage,
+    slideshowRunning: state.slideshowRunning
   }
 };
 

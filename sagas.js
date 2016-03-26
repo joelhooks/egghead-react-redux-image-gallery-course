@@ -1,8 +1,33 @@
 import {fetchImages} from './api';
 import {takeEvery} from 'redux-saga';
-import {put, call} from 'redux-saga/effects';
+import {put, call, take, fork} from 'redux-saga/effects';
 
 import * as GalleryActions from './actions';
+
+const waitFor = ms => {
+  return new Promise(resolve => {
+    return setTimeout(resolve, ms)
+  })
+};
+
+export function* advanceImage() {
+  yield put(GalleryActions.advanceSlideshow());
+  yield call(waitFor, 1000);
+  yield put(GalleryActions.requestAdvanceSlideshow());
+}
+
+export function* watchForSlideshowAdvanceRequest(getState) {
+  while(true) {
+    yield take(GalleryActions.ADVANCE_SLIDESHOW_REQUESTED);
+    if(getState().slideshowRunning) {
+      yield fork(advanceImage)
+    }
+  }
+}
+
+export function* watchForStartSlideshow() {
+  yield* takeEvery(GalleryActions.START_SLIDESHOW, advanceImage);
+}
 
 export function* loadImages(action) {
   try {
