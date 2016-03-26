@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import * as GalleryActions from './actions';
 
 class Gallery extends Component {
   componentDidMount() {
-    const {images, dispatch} = this.props;
+    const {images, selectImage} = this.props;
 
-    dispatch({
-      type: 'SELECT_IMAGE',
-      selectedImage: images[0]
-    })
+    selectImage(images[0]);
   }
   handleThumbClick(selectedImage) {
-    const {dispatch} = this.props;
+    const {selectImage} = this.props;
 
-    dispatch({
-      type: 'SELECT_IMAGE',
-      selectedImage
-    })
+    selectImage(selectedImage);
   }
   render() {
     const {images, selectedImage} = this.props;
@@ -43,4 +39,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(Gallery);
+const mapActionCreators = (dispatch) => {
+  return bindActionCreators(GalleryActions, dispatch)
+};
+
+export default connect(mapStateToProps, mapActionCreators)(Gallery);
