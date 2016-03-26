@@ -5,12 +5,18 @@ import ReactDom from 'react-dom';
 
 import Gallery from './Gallery';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
 
 import imagesReducer from './reducer';
 
-const store = createStore(imagesReducer);
+import {loadImages} from './sagas';
+
+const store = createStore(
+  imagesReducer,
+  applyMiddleware(createSagaMiddleware(loadImages))
+);
 
 ReactDom.render(
   <Provider store={store}>
