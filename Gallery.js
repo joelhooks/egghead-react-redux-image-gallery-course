@@ -1,28 +1,31 @@
 import React, {Component} from 'react';
 
-const flickrImages = [
-  "https://farm2.staticflickr.com/1553/25266806624_fdd55cecbc.jpg",
-  "https://farm2.staticflickr.com/1581/25283151224_50f8da511e.jpg",
-  "https://farm2.staticflickr.com/1653/25265109363_f204ea7b54.jpg",
-  "https://farm2.staticflickr.com/1571/25911417225_a74c8041b0.jpg",
-  "https://farm2.staticflickr.com/1450/25888412766_44745cbca3.jpg"
-];
 
 export default class Gallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: flickrImages,
-      selectedImage: flickrImages[0]
-    }
+  componentDidMount() {
+    const {subscribe, dispatch, getState} = this.props.store;
+
+    subscribe(() => {
+      this.setState({
+        selectedImage: getState().selectedImage
+      })
+    });
+
+    dispatch({
+      type: 'SELECT_IMAGE',
+      selectedImage: getState().images[0]
+    })
   }
   handleThumbClick(selectedImage) {
-    this.setState({
+    const {dispatch} = this.props.store;
+
+    dispatch({
+      type: 'SELECT_IMAGE',
       selectedImage
     })
   }
   render() {
-    const {images, selectedImage} = this.state;
+    const {images, selectedImage} = this.props.store.getState();
     return (
       <div className="image-gallery">
         <div className="gallery-image">

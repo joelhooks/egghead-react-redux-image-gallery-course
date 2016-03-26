@@ -16,6 +16,6 @@ store.dispatch({
 });
 
 ReactDom.render(
-  <Gallery />,
+  <Gallery store={store} />,
   document.getElementById('root')
 );
