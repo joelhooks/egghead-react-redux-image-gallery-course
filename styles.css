@@ -45,3 +45,7 @@ body {
     padding: 1px;
     border: 1px solid black;
 }
+
+.gallery-actions {
+    padding: 5px
+}
