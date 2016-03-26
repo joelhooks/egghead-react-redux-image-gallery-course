@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 
-export default class Gallery extends Component {
+class Gallery extends Component {
   componentDidMount() {
-    const {subscribe, dispatch, getState} = this.props.store;
-
-    subscribe(() => {
-      this.setState({
-        selectedImage: getState().selectedImage
-      })
-    });
+    console.log(this.props);
+    const {images, dispatch} = this.props;
 
     dispatch({
       type: 'SELECT_IMAGE',
-      selectedImage: getState().images[0]
+      selectedImage: images[0]
     })
   }
   handleThumbClick(selectedImage) {
-    const {dispatch} = this.props.store;
+    const {dispatch} = this.props;
 
     dispatch({
       type: 'SELECT_IMAGE',
@@ -25,7 +21,7 @@ export default class Gallery extends Component {
     })
   }
   render() {
-    const {images, selectedImage} = this.props.store.getState();
+    const {images, selectedImage} = this.props;
     return (
       <div className="image-gallery">
         <div className="gallery-image">
@@ -40,3 +36,12 @@ export default class Gallery extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    images: state.images,
+    selectedImage: state.selectedImage
+  }
+};
+
+export default connect(mapStateToProps)(Gallery);

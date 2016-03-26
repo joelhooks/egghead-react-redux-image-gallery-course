@@ -6,11 +6,15 @@ import ReactDom from 'react-dom';
 import Gallery from './Gallery';
 
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
 import imagesReducer from './reducer';
 
 const store = createStore(imagesReducer);
 
 ReactDom.render(
-  <Gallery store={store} />,
+  <Provider store={store}>
+    <Gallery />
+  </Provider>,
   document.getElementById('root')
 );
