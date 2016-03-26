@@ -10,11 +10,6 @@ import imagesReducer from './reducer';
 
 const store = createStore(imagesReducer);
 
-store.dispatch({
-  type: 'SELECT_IMAGE',
-  image: '??'
-});
-
 ReactDom.render(
   <Gallery store={store} />,
   document.getElementById('root')
