@@ -10,6 +10,10 @@ class Gallery extends Component {
 
     loadImages();
   }
+  handleLoadMoreClick() {
+    const {loadNextPage, currentPage} = this.props;
+    loadNextPage(currentPage);
+  }
   handleThumbClick(selectedImage) {
     const {selectImage} = this.props;
 
@@ -27,6 +31,9 @@ class Gallery extends Component {
             <img key={index} src={image} onClick={() => this.handleThumbClick(image)}/>
           )}
         </div>
+        <div className="gallery-actions">
+          <button onClick={this.handleLoadMoreClick.bind(this)}>Load More Images</button>
+        </div>
       </div>
     )
   }
@@ -35,7 +42,8 @@ class Gallery extends Component {
 const mapStateToProps = (state) => {
   return {
     images: state.images,
-    selectedImage: state.selectedImage
+    selectedImage: state.selectedImage,
+    currentPage: state.currentPage
   }
 };
 

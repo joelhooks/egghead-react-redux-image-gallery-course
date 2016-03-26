@@ -4,8 +4,8 @@ import {put} from 'redux-saga/effects';
 
 import * as GalleryActions from './actions';
 
-export function* loadImages() {
-  const images = yield fetchImages();
+export function* loadImages(action) {
+  const images = yield fetchImages(action.page);
   yield put(GalleryActions.imagesLoaded(images));
   yield put(GalleryActions.selectImage(images[0]));
 }
